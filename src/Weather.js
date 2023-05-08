@@ -49,7 +49,9 @@ export default function Weather(props) {
             <div className="col-5">
               <div className="images">
                 <img src={weatherData.icon} alt={weatherData.Description} />
-                {Math.round(weatherData.temperature)}°C
+                <span className="temp">
+                  {Math.round(weatherData.temperature)}°C
+                </span>
               </div>
             </div>
             <div className="col-5">

@@ -2,8 +2,6 @@
   text-align: center;
 }
 p {
-  display: block;
-  text-align: center;
-  padding-bottom: 2px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  padding: 1px;
 }
