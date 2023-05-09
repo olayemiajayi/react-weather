@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import FormattedDate from "./FormattedDate.js";
 import axios from "axios";
 import "./Weather.css";
 
@@ -15,7 +16,7 @@ export default function Weather(props) {
       Description: response.data.condition.description,
       icon: response.data.condition.icon_url,
       iconUrl: `"http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png"`,
-      date: "Thurday, 5:00",
+      date: new Date(response.data.time * 1000),
     });
 
     setCountry(true);
@@ -39,7 +40,9 @@ export default function Weather(props) {
           <div className="row">
             <div className="col-7">
               <ul>
-                <li className="day">{weatherData.date}</li>
+                <li className="day">
+                  <FormattedDate date={weatherData.date} />
+                </li>
                 <li className="days">{weatherData.Description}</li>
               </ul>
             </div>

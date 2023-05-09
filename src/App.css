@@ -1,7 +1,6 @@
-.App {
-  text-align: center;
-}
 p {
+  position: relative;
+  left: 400px;
+  top: -58px;
   font-family: Georgia, "Times New Roman", Times, serif;
-  padding: 1px;
 }
