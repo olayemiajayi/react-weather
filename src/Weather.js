@@ -6,6 +6,7 @@ import "./Weather.css";
 export default function Weather(props) {
   let [country, setCountry] = useState(false);
   let [weatherData, setWeatherData] = useState({});
+  let [city, setCity] = useState(props.defaultCity);
   function showTemperature(response) {
     console.log(response.data);
     setWeatherData({
@@ -21,17 +22,34 @@ export default function Weather(props) {
 
     setCountry(true);
   }
+  function search() {
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=308ee4b586fftbc5ce47ob29fd3f7a87&units=metric`;
+    axios.get(apiUrl).then(showTemperature);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+  function updateCity(event) {
+    setCity(event.target.value);
+  }
+
   if (country) {
     return (
       <div className="weather">
         <div className="country">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="form">
-              <input type="search" placeholder="Type city" autoFocus="on" />
+              <input
+                type="search"
+                placeholder="Type city"
+                autoFocus="on"
+                onChange={updateCity}
+              />
               <input
                 type="submit"
                 value="search"
-                className="btn btn-primary w-5 m-2"
+                className="btn btn-info w-5 m-2"
               />
             </div>
           </form>
@@ -53,8 +71,9 @@ export default function Weather(props) {
               <div className="images">
                 <img src={weatherData.icon} alt={weatherData.Description} />
                 <span className="temp">
-                  {Math.round(weatherData.temperature)}°C
+                  {Math.round(weatherData.temperature)}
                 </span>
+                <div className="degree">°C</div>
               </div>
             </div>
             <div className="col-5">
@@ -72,8 +91,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=308ee4b586fftbc5ce47ob29fd3f7a87&units=metric`;
-    axios.get(apiUrl).then(showTemperature);
+    search();
     return "loading..";
   }
 }
