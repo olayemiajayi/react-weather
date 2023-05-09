@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FormattedDate from "./FormattedDate.js";
+import Loader from "react-js-loader";
 import axios from "axios";
 import "./Weather.css";
 
@@ -92,6 +93,10 @@ export default function Weather(props) {
     );
   } else {
     search();
-    return "loading..";
+    return (
+      <div className="loader">
+        <Loader type="bubble-loop" bgColor={"#155263"} size={150} />
+      </div>
+    );
   }
 }
