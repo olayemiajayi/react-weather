@@ -19,7 +19,7 @@ ul {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .wind {
-  font-size: 15px;
+  font-size: 17px;
   font-style: italic;
   text-align: right;
   margin-left: 28px;
@@ -27,7 +27,7 @@ ul {
 .images {
   display: block;
   margin-left: 20px;
-  font-size: 28px;
+  font-size: 29px;
   padding: 2px;
   text-align: center;
 }
@@ -51,9 +51,15 @@ ul {
 }
 .degree {
   font-size: 12px;
-  margin-left: 133px;
+  margin-left: 135px;
   position: relative;
   top: -110px;
+}
+.unit {
+  font-size: 12px;
+  margin-left: 155px;
+  position: relative;
+  top: -147px;
 }
 .loader {
   margin: 80px;
