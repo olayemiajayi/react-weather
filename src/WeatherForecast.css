@@ -1,0 +1,10 @@
+.weatherForecast-day {
+  font-style: italic;
+}
+.WeatherForecast-Max {
+  font-size: 13px;
+}
+.WeatherForecast-Min {
+  font-size: 13px;
+  opacity: 0.6;
+}
