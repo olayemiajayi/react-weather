@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import FormattedDate from "./FormattedDate.js";
-
+import Forecast from "./Forecast.js";
+import WeatherData from "./WeatherData.js";
 import Loader from "react-js-loader";
 import axios from "axios";
 import "./Weather.css";
@@ -11,21 +11,23 @@ export default function Weather(props) {
   let [city, setCity] = useState(props.defaultCity);
   function showTemperature(response) {
     console.log(response.data);
+
     setWeatherData({
-      temperature: response.data.temperature.current,
-      city: response.data.city,
-      humidity: response.data.temperature.humidity,
+      temperature: response.data.main.temp,
+      city: response.data.name,
+      cords: response.data.coord,
+      humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
-      Description: response.data.condition.description,
-      icon: response.data.condition.icon_url,
-      iconUrl: `"http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png"`,
-      date: new Date(response.data.time * 1000),
+      Description: response.data.weather[0].description,
+      icon: response.data.weather[0].icon,
+      icon_url: " https://openweathermap.org/img/wn/10d@2x.png",
+      date: new Date(response.data.dt * 1000),
     });
 
     setCountry(true);
   }
   function search() {
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=308ee4b586fftbc5ce47ob29fd3f7a87&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=97bed167ec49bff56e6c1b63daef9c86&units=metric`;
     axios.get(apiUrl).then(showTemperature);
   }
   function handleSubmit(event) {
@@ -55,42 +57,8 @@ export default function Weather(props) {
               />
             </div>
           </form>
-
-          <h1 className="city">{weatherData.city}</h1>
-          <div className="row">
-            <div className="col-7">
-              <ul>
-                <li className="day">
-                  <FormattedDate date={weatherData.date} />
-                </li>
-                <li className="days">{weatherData.Description}</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-5">
-              <div className="images">
-                <img src={weatherData.icon} alt={weatherData.Description} />
-                <div className="weatherTemp">
-                  <span className="temp">
-                    {Math.round(weatherData.temperature)}
-                  </span>
-                  <div className="degree">°C </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-5">
-              <div className="wind">
-                <strong>
-                  <ul>
-                    <li>Humidity:{weatherData.humidity}%</li>
-                    <li>Wind:{Math.round(weatherData.wind)}Km/h</li>
-                  </ul>
-                </strong>
-              </div>
-            </div>
-          </div>
+          <WeatherData data={weatherData} />
+          <Forecast coordinates={weatherData.coordinates} />
         </div>
       </div>
     );

@@ -59,3 +59,34 @@ ul {
   margin: 80px;
   padding: 80px;
 }
+.Forecast {
+  display: inline-flex;
+}
+.Images {
+  display: block;
+  margin-bottom: 10px;
+  position: relative;
+  right: 198px;
+}
+
+.weatherDay {
+  font-size: 16px;
+  margin-top: 28px;
+  position: relative;
+  right: 170px;
+  top: 20px;
+}
+
+.tempMax {
+  font-size: 12px;
+  position: relative;
+  bottom: 40px;
+  right: 180px;
+}
+.tempMin {
+  font-size: 12px;
+  opacity: 0.6;
+  position: relative;
+  bottom: 40px;
+  right: 180px;
+}
