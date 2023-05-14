@@ -39,10 +39,11 @@ export default function WeatherForecast(props) {
       </div>
     );
   } else {
-    let apiKey = "cabdbda40038ba7d1165b953b1c7bd6c";
-    let lon = props.coord.lat;
-    let lat = props.coord.lon;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+    let apiKey = "6a48a550fc04f170639e60d52b8a6bc5";
+    let lat = props.coord.lat;
+    let lon = props.coord.lon;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
+
     axios.get(apiUrl).then(handleForecast);
 
     return null;
