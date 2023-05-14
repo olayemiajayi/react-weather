@@ -15,7 +15,7 @@ export default function Weather(props) {
     setWeatherData({
       temperature: response.data.main.temp,
       city: response.data.name,
-      coordinates: response.data.coord,
+      coord: response.data.coord,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       Description: response.data.weather[0].description,
@@ -27,7 +27,7 @@ export default function Weather(props) {
     setCountry(true);
   }
   function search() {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8d9838178b5b401f1b4e7cb5af18e210&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=cabdbda40038ba7d1165b953b1c7bd6c8&units=metric`;
     axios.get(apiUrl).then(showTemperature);
   }
   function handleSubmit(event) {
@@ -58,7 +58,7 @@ export default function Weather(props) {
             </div>
           </form>
           <WeatherData data={weatherData} />
-          <WeatherForecast coordinates={weatherData.coordinates} />
+          <WeatherForecast coord={weatherData.coord} />
         </div>
       </div>
     );
